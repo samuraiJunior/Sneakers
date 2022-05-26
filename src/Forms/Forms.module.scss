@@ -1,0 +1,70 @@
+@import "./../App.scss";
+
+.greenbtn{
+    width: 100%;
+        height: 55px;
+        background: #9DD558;
+        border-radius: 18px;
+        text-align: center;
+        @include fonts(normal,600 ,16px ,19px ,#FFFFFF );
+        transition:background 0.2s ease-in,transform 0.5s ease-in-out ;
+        img{
+            position: relative;
+            right: -21px;
+            top: 2.5px;
+            transition:transform 0.3s ease-in-out ;
+            }
+            &:hover{
+                background:#a6dc65d8 ;
+                img{
+                    transform: translateX(20px);
+                }
+            }
+            &:active{
+                background:#87ca33 ;
+            }
+        } 
+        .search_title{
+            @include fonts(normal,700,32px,39px,#000000);
+            @media (max-width:750px){
+            @include fonts(normal,700,28px,39px,#000000);
+            }
+          }
+        .search_block{
+            position: relative;
+          
+          input{
+           width: 250px;
+          height: 45px;
+          border: 1px solid #F3F3F3;
+          border-radius: 10px;
+          padding-left: 46px;
+          
+          }
+          .search_img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(90%, 90%);
+          }
+          .search_clearbtn{
+            position: absolute;
+            //right: 0;
+            width: 18px;
+            height: 18px;
+            top: 13px;
+            right: 10px;
+            opacity: 0.5;
+            cursor: pointer;
+            &:hover{
+             opacity: 1;   
+
+            }
+          }
+          @media (max-width:750px){
+            input{
+              width: 205px;
+            }
+
+          }
+        } 

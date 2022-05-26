@@ -1,0 +1,130 @@
+@import "./../App.scss";
+
+.header{
+    display:$fl ; 
+   justify-content: space-between;
+   /*padding-top: 43px;
+   padding-left: 45px;
+   padding-bottom: 45px;
+   padding-right: 69px;*/
+   padding:43px 69px 45px  45px;
+   position: relative;
+   border-bottom: 1px solid #EAEAEA;
+   @media (max-width:700px){
+     flex-direction: column;
+     //align-items: center;
+    padding:33px 30px 35px  35px;
+    &>*+*{
+      margin-top: 21px
+    }
+   }
+   
+   }
+   .header_Right{
+     @extend%flex;
+     &>*+*{
+       margin-left: 30px;
+     }
+     @media (max-width:700px){
+       align-self:flex-end;
+     }
+     @media (max-width:480px){
+       align-self: center;
+     }
+   }
+   .header_Right__path1{
+     @extend%flex;
+     }
+
+     .header_Right__path1_wrapperIcon{
+      position: relative;
+      img{
+        cursor: pointer;
+        margin-right: 10px;
+        //background: #9DD558;
+      }
+      span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(10px,-10.8px);
+       // z-index: 1; 
+        width: 5px;
+        color: #9DD558;
+    
+      }
+
+     &>*+*{
+       margin-left: 10px;
+     }
+      }
+   
+   
+   .header_Right__path2{
+    display: flex;
+    align-items: center;
+     &>*+*{
+       margin-left: 36.3px
+   }
+   }
+   
+   
+   .header_Left{
+    
+    a{
+        @extend%flex;
+     &>*+*{
+       margin-left: 16px;
+     }
+     }
+     img{
+       width: 40px;
+       height: 40px;
+     }
+     h1{
+       @include fonts(normal,700,20px,24px, #000000);
+       text-transform: uppercase;
+     }
+     p{
+       @include fonts(normal,400,14px,17px,#9D9D9D)
+     }
+     @media (max-width:700px){
+       h1{
+        @include fonts(normal,700,16px,24px, #000000);
+       }
+       p{
+        @include fonts(normal,400,13px,17px,#9D9D9D)
+      }
+
+     }
+   }
+
+   .f{
+    animation:wrapper-opacity 1.5s ease-in-out!important ;
+  }
+  
+  .orders{
+    position: absolute;
+    top: 7%;
+    right: 1%;
+    svg{
+      width: 20px;
+    }
+  }
+   @keyframes wrapper-opacity{
+     0%{
+       opacity: 1;
+     }
+     /*25%{
+       opacity: 0;
+     }*/
+     50%{
+       opacity: 0; 
+     }
+     /*75%{
+       opacity: 0;
+     }*/
+     100%{
+       opacity: 1;
+     }
+   }
