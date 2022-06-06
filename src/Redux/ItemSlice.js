@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ClearitemIncart, deleteitemIncart, getcart, getItems, Setcart } from "../DAL/API";
+import { ClearitemIncart, deleteitemIncart, getcart, getItems, getshirts, Setcart } from "../DAL/API";
 
 
 export const GetItems=createAsyncThunk(
@@ -59,6 +59,17 @@ export const CleariteIncart=createAsyncThunk(
     }
 )
 
+export const GetTshirts=createAsyncThunk(
+    "Tshirts/GetTshirts",
+    async()=>{
+        try {
+            const response=await getshirts()
+            return response
+        } catch (error) {
+            
+        }
+    } 
+)
 
 
 
@@ -68,20 +79,8 @@ export const CleariteIncart=createAsyncThunk(
 const ItemSlice=createSlice({
     name:"Items",
     initialState:{
-        items:[
-            /*{"Imgsrc":"./../Imgs/itemsIMG/item 1.jpg","category":"Мужские Кроссовки","itemName":"Blazerre Mid Suede","price":"13 990 руб.", "id":"99"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 2.jpg","category":"Мужские Кроссовки","itemName":" Nike Air Max 270","price":"12 990 руб.", "id":"2"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 3.jpg","category":"Мужские Кроссовки","itemName":" Nike Blazer Mid Suedegh","price":"8 499 руб.", "id":"3"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 4.jpg","category":"Мужские Кроссовки","itemName":"Кроссовки Puma X Aka Boku Future Rider","price":"8 999 руб.", "id":"4"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 5.jpg","category":"Мужские Кроссовки","itemName": "Under Armour Curry 8","price":"15 199 руб.", "id":"5"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 6.jpg","category":"Мужские Кроссовки","itemName":" Nike Kyrie 7","price":"11 299 руб.", "id":"6"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 7.jpg","category":"Мужские Кроссовки","itemName":" Jordan Air Jordan 11","price":"10 799 руб.", "id":"7"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 8.jpg","category":"Мужские Кроссовки","itemName":" Nike LeBron XVIII","price":"16 499 руб.", "id":"8"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 9.jpg","category":"Мужские Кроссовки","itemName":"Nike Lebron XVIII Low","price":"13 999 руб.", "id":"9"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 10.jpg","category":"Мужские Кроссовки","itemName":"Nike Blazer Mid Suede","price":"8 499 руб.", "id":"10"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 11.jpg","category":"Мужские Кроссовки","itemName":" Puma X Aka Boku Future Rider","price":"8 999 руб.", "id":"11"},
-            {"Imgsrc":"./../Imgs/itemsIMG/item 7.jpg","category":"Мужские Кроссовки","itemName":" Nike Kyrie Flytrap IV","price":"11 299 руб.", "id":"12"},*/
-        ],
+        Sneakers:[],
+        Tshirts:[],
         isfetching:false,
         itemsLoading:false,
         error:[],
@@ -89,7 +88,7 @@ const ItemSlice=createSlice({
         SearchValue:"",
         OrderId:"",
         WrapperIconActive:false,
-
+        totalPrice:0,
     },
     reducers:{
         SetItemsIncart(state,action){
@@ -106,6 +105,9 @@ const ItemSlice=createSlice({
         },
         ToggleWrapperActive(state){
             state.WrapperIconActive=!state.WrapperIconActive
+        },
+        SetTotalPrice(state,action){
+            state.totalPrice=action.payload
         }
     },
     extraReducers:{
@@ -113,13 +115,17 @@ const ItemSlice=createSlice({
             state.itemsLoading=true
             state.error=null
         },
+        
         [GetItems.fulfilled]:(state,action)=>{
-            state.items=action.payload
+            state.Sneakers=action.payload
             state.itemsLoading=false
         },
         [GetItems.rejected]:(state,action)=>{
             state.error=action.payload
            
+        },
+        [GetTshirts.fulfilled]:(state,action)=>{
+            state.Tshirts=action.payload
         },
         [SetItemtoCart.pending]:(state)=>{
             state.isfetching=true
@@ -166,4 +172,5 @@ const ItemSlice=createSlice({
 })
 
 export default ItemSlice.reducer
-export const {SetItemsIncart,DeleteItemsIncart,SetSearchValue,ClearSearchValue,ClearitemsIncart,ToggleWrapperActive}=ItemSlice.actions
+export const {SetItemsIncart,DeleteItemsIncart,SetSearchValue,
+    ClearSearchValue,ClearitemsIncart,ToggleWrapperActive,SetTotalPrice}=ItemSlice.actions

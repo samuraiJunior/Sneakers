@@ -1,18 +1,17 @@
 import React, { useContext, useState } from 'react'
 import s from "./Drawer.module.scss"
 import CartItem from './CartItem'
-/*import cross from "./../Imgs/itemsIMG/cross.svg"*/
 import Greenbtn from '../Forms/Greenbtn'
 import { useDispatch, useSelector } from 'react-redux'
 import Info from './Info'
 import { CleariteIncart } from '../Redux/ItemSlice'
-import { AppContext } from '../Context'
 import { AddOrders } from '../Redux/OrdersSlice'
 
 const Drawer = (props) => {
+  const TotalPrice=useSelector(state=>state.Items.totalPrice)
 
-  const {tottalPrice}=useContext(AppContext)
-  const contribution=tottalPrice*0.05
+
+  const contribution=TotalPrice*0.05
 
   const itemsIncart=useSelector(state=>state.Items.itemsIncart)
   const OrderId=useSelector(state=>state.Orders.OrderId)
@@ -20,11 +19,9 @@ const Drawer = (props) => {
     
   const [IsOrderComplete,setIsOrderComplete]=useState(false)
   const dispatch=useDispatch()
-  const OrderSucces=(obj)=>{
-    //dispatch(ClearitemsIncart())
+  const OrderSucces=()=>{
     dispatch(CleariteIncart(itemsIncart))
     dispatch(AddOrders({items:itemsIncart}))
-   //console.log(data)
     setIsOrderComplete(true)
   }
 
@@ -48,7 +45,7 @@ const Drawer = (props) => {
             <li>
                 <span>Итого</span>
                 <div></div>
-                <b>{tottalPrice} руб. </b>
+                <b>{TotalPrice} руб. </b>
             </li>
             <li>
                 <span>Налог 5%: </span>

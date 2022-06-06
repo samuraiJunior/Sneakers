@@ -47,7 +47,7 @@ const FavoriteSlice=createSlice({
 
     },
     reducers:{
-        ToggleIconActive(state,action){
+        ToggleIconActive(state){
             state.favoriteIconActive=!state.favoriteIconActive
             console.log(!state.favoriteIconActive)
         }
