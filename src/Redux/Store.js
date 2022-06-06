@@ -3,9 +3,8 @@ import FavotiteSlice from "./FavotiteSlice";
 import ItemSlice from "./ItemSlice";
 import OrdersSlice from "./OrdersSlice";
 
-
-
 const store=configureStore({
+  
     reducer:{
       Items:ItemSlice,
       Favorite:FavotiteSlice,
