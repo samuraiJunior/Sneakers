@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import s from "./Header.module.scss"
@@ -8,8 +8,13 @@ const Header = (props) => {
   const favoriteIconActive=useSelector(state=>state.Favorite.favoriteIconActive)
   const WrapperIconActive=useSelector(state=>state.Items.WrapperIconActive)
   const itemsIncart=useSelector(state=>state.Items.itemsIncart)
-
   const TotalPrice=useSelector(state=>state.Items.totalPrice)
+  const dispatch=useDispatch()
+  const totalPrice=itemsIncart.reduce((acc,item)=> acc+=parseInt(String(item.price).replace(/ /g, "")),0)
+  useEffect(()=>{
+    dispatch(SetTotalPrice(totalPrice))
+
+  },[totalPrice,dispatch])
  
   return (<>
     <header className={s.header}>
@@ -18,7 +23,7 @@ const Header = (props) => {
           <img width={"100px"} src="Imgs/logo.png" alt="icon"/>
           <div>
             <h1>SNEAKERS</h1>
-            <p>Магазин лучших кроссовок</p>
+            <p>Премиальный магазин</p>
           </div>
           </Link>
         </div>

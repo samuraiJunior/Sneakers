@@ -94,7 +94,7 @@ color: $color;
   border-radius: 20px;
   max-width: 1080px;
   margin: 50px auto;
-  height: 1200px;
+  min-height: 1200px;
   @media (max-width:1079px){
     height:auto;
 
@@ -168,7 +168,7 @@ color: $color;
   align-items: center;
   background: #FFFFFF;
   padding: 0 10px;
-  border: 1px solid grey;
+  border: 1px solid grey; 
   border-radius: 10px;
   z-index: 9;
   span{

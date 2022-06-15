@@ -62,6 +62,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     justify-content: space-between;
+    position: relative;
     &+&{
       margin-top: 20px;
     }
@@ -117,24 +118,6 @@
          &>*+*{
              margin-top: 19px;
          }
-      li{
-          display: $fl;
-          align-items: flex-end;
-      }
-      div{
-          height: 1px;
-          border-bottom: 1px dashed #dfdfdf;
-          position: relative;
-          top: -1px;
-          flex: 1;
-          margin: 0 7px;
-      }
-      span{
-        @include fonts(normal,400 ,16px ,19px ,#000000 )
-      }
-      b{
-        @include fonts(normal,600 ,16px ,19px ,#000000 )
-      }
     }
   }
   .pureBox{
@@ -161,4 +144,11 @@
       opacity: 0.4;
     }
   }
+
+  .cartItem__size{
+    top: 5%;
+    right: 5%;
+    position: absolute;
+}
+  
   

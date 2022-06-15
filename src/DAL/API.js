@@ -4,6 +4,10 @@ const instance=axios.create({
     baseURL:"https://6268f084f2c0cdabac06c090.mockapi.io/",
    /* withCredentials:true,*/
 })
+const instance2=axios.create({
+  baseURL:"https://62738d7a345e1821b21d377c.mockapi.io/",
+ /* withCredentials:true,*/
+})
  
 
 
@@ -11,8 +15,13 @@ const instance=axios.create({
     const response=await instance.get("items")
         //console.log(response.data)
       return await response.data
-    
 }
+
+export const getOnceItem=async(id)=>{
+  const response=await instance.get("items/"+id)
+    return await response.data
+}
+
  export const Setcart=async(obj)=>{
   const response=await instance.post("cart",obj)
       //console.log(response.data)
@@ -64,7 +73,11 @@ export const getOrders=async()=>{
 }
 
 export const getshirts=async()=>{
-  const response=await axios.get("https://62738d7a345e1821b21d377c.mockapi.io/Tshirts")
+  const response=await instance2.get("Tshirts")
   //console.log(response.data)
+  return response.data
+}
+export const getOnceThirt=async(id)=>{
+  const response=await instance2.get("Tshirts/"+id)
   return response.data
 }

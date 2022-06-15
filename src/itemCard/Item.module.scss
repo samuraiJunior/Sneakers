@@ -1,7 +1,22 @@
 
 @import "./../App.scss";
 
-
+.none{
+    display: none;
+}
+.imgWrapper{
+    position: relative;
+}
+.imgOverlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #fffcfc73;
+    
+}
 .content__card{
     width: 210px;
     height: 260px;
@@ -11,7 +26,7 @@
     padding: 20px 23px 34px 27px;
     position: relative;
     transition:box-shadow 0.3s ease-in,transform 0.3s ease-in ;
-    img{
+    .PreviewImg{
         width: 133px;
         height: 112px;
     }
@@ -32,20 +47,6 @@ text-transform: uppercase;
         vertical-align: baseline;
         width: auto;
         height: auto;
-        }
-    }
-    .unlike_wrapper{
-       @extend %likeUnChecked;
-        img{
-            width: 14.4px;
-            height: 12.8px;
-        }
-    }
-    .like_wrapper{
-        @extend %likeChecked;
-        img{
-            width: 14.4px;
-            height: 12.8px;
         }
     }
 
@@ -73,4 +74,13 @@ text-transform: uppercase;
         height: auto;
         vertical-align: baseline!important;
     }
+
+}
+
+
+.likeWrapper{
+    position: absolute;
+    top: 14%;
+    left: 13%;
+   z-index: 1;
 }

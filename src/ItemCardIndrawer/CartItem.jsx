@@ -13,6 +13,7 @@ const CartItem = ({item}) => {
   return (
     
     <div className={s.cartItem__items}>
+        <span className={s.cartItem__size}>{item.size}</span>
         <div className={s.cartItem__preview}>
         <img src={item.Imgsrc} alt="img"/>
 

@@ -1,12 +1,14 @@
-import React, { memo } from 'react'
+import React, { memo,useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { AddItemToFavorite, deleteFavorite, ToggleIconActive } from '../Redux/FavotiteSlice'
-import { deleteIteminCart, IsItemsIn, SetItemtoCart, ToggleWrapperActive } from '../Redux/ItemSlice'
+import { Link } from 'react-router-dom'
+import Like from '../Components/Like'
+import { deleteIteminCart, SetItemtoCart, ToggleWrapperActive } from '../Redux/ItemSlice'
 import s from "./Item.module.scss"
 
 
-const Item =({i}) => {
+const Item =({i,title}) => {
   const itemsIncart=useSelector(state=>state.Items.itemsIncart)
+  const maxWord=20
 
   const FindObj=(itemsIncart)=>{
    const findobj=itemsIncart.find(obj=>obj.ParentID===i.ParentID)
@@ -28,33 +30,25 @@ const Item =({i}) => {
     const obj=FindObj(itemsIncart)
     dispatch(deleteIteminCart(obj.id))
   }
- const addItemToFavorite=()=>{
-   dispatch(AddItemToFavorite(i))
-  dispatch(ToggleIconActive())
-  setTimeout(() => {
-    dispatch(ToggleIconActive())
-  }, 1500);
- }
- const favorite=useSelector(state=>state.Favorite.favorite)
- const DeleteFavorite=()=>{
-   const obj=FindObj(favorite)
-   console.log(obj)
-   dispatch(deleteFavorite(obj.id))
- }
  
+  const [overlay,setOverlay]=useState(false)
+
+
   return (<>
+    
       <div className={s.content__card}>
-          <img src={i.Imgsrc} alt="icon"/>
+      <Link to={title==="Все кроcсовки"?"/"+i.ParentID:"/thirts"+i.ParentID}>
+        <div className={s.imgWrapper} onMouseEnter={()=>setOverlay(true)} onMouseLeave={()=>setOverlay(false)}>
+          <img className={s.PreviewImg} src={i.Imgsrc} alt="icon"/>
+          <span className={overlay?s.imgOverlay:s.none}></span>
+          </div>
+          </Link>
+          <span className={s.likeWrapper}><Like item={i}/></span>
           
-         {IsItemIn(favorite,i.ParentID)?<span onClick={DeleteFavorite} className={s.like_wrapper}>
-           <img  className={s.like} src="Imgs/itemsIMG/like.svg" alt="icon" />
-           </span>
-           :<span onClick={addItemToFavorite} className={s.unlike_wrapper}>
-           <img  className={s.unlike} src="Imgs/itemsIMG/nlikely.svg" alt="icon" />
-           </span>}
+          
 
           <div className={s.content__card_title}>{i.category}</div>
-          <div className={s.content__card_subtitle}>{i.itemName}</div>
+          <div className={s.content__card_subtitle}>{i.itemName.slice(0,maxWord)}...</div>
           <div className={s.content__card_priceHolder}>
           
           <div>
@@ -72,3 +66,4 @@ const Item =({i}) => {
 }
 
 export default memo(Item)
+

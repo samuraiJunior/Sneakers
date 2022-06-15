@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import s from "./Drawer.module.scss"
 import CartItem from './CartItem'
-import Greenbtn from '../Forms/Greenbtn'
+import Greenbtn from '../Components/Greenbtn'
 import { useDispatch, useSelector } from 'react-redux'
 import Info from './Info'
 import { CleariteIncart } from '../Redux/ItemSlice'
 import { AddOrders } from '../Redux/OrdersSlice'
+import CharacteristicComponet from '../Components/CharacteristicComponet'
 
 const Drawer = (props) => {
   const TotalPrice=useSelector(state=>state.Items.totalPrice)
@@ -42,18 +43,10 @@ const Drawer = (props) => {
          
         <div className={s.tottalBlock}>
         <ul>
-            <li>
-                <span>Итого</span>
-                <div></div>
-                <b>{TotalPrice} руб. </b>
-            </li>
-            <li>
-                <span>Налог 5%: </span>
-                <div></div>
-                <b>{contribution.toFixed(2)} руб. </b>
-            </li>
+          <CharacteristicComponet value={TotalPrice} rub={true} title={"Итого"} />
+          <CharacteristicComponet value={contribution.toFixed(2)} rub={true} title={"Налог 5%:"} />
         </ul>
-        <Greenbtn OrderSucces={OrderSucces}/>
+        <Greenbtn handleClick={OrderSucces} Smallsize={false} title={"Оформить заказ"}/>
         </div>{/*tottalBlock*/}</>}
         </div>{/*drawer*/}
     </div>

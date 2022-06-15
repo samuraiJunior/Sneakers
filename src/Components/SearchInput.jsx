@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ClearSearchValue, SetSearchValue } from '../Redux/ItemSlice'
-import s from "./Forms.module.scss"
+import s from "./Components.module.scss"
 
 const SearchInput = (props) => {
  const dispatch=useDispatch()

@@ -8,6 +8,15 @@
         text-align: center;
         @include fonts(normal,600 ,16px ,19px ,#FFFFFF );
         transition:background 0.2s ease-in,transform 0.5s ease-in-out ;
+        &.buttonSmallSize{
+          width: 300px;
+        }
+        &:disabled{
+          background-color:#a6dc65d8 ;
+          img{
+            display: none;
+          }
+        }
         img{
             position: relative;
             right: -21px;
@@ -68,3 +77,32 @@
 
           }
         } 
+
+
+        .characteristic{
+          display: $fl;
+          align-items: flex-end;
+          flex-wrap: wrap;
+      div{
+          height: 1px;
+          border-bottom: 1px dashed #dfdfdf;
+          position: relative;
+          top: -1px;
+          flex: 1;
+          margin: 0 7px;
+      }
+      span{
+        @include fonts(normal,400 ,16px ,19px ,#000000 );
+        &.bold{
+          @include fonts(normal,600 ,16px ,19px ,#000000 )
+          }
+      }
+      
+    }
+
+    
+       .like{
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+       }
